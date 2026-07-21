@@ -28,3 +28,5 @@ COUNT_ELEMS -= 2
 
 for i in range(COUNT_ELEMS):
     print(f"{arr[i]} ", end="")
+
+#sdlkgnjksdngjk
