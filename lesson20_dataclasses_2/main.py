@@ -96,7 +96,15 @@ while is_run == True:
 
         pass
     elif choose_action == 4:
-        pass
+        id = int(input("Введите ИД поста: "))
+
+        is_deleted = delete_post_by_id(posts, id)
+
+        if is_deleted == True:
+            print("Успешно удалено")
+        else:
+            print(f"Пост с ИД = {id} не найден")
+
     elif choose_action == 0:
         is_run = False
 
