@@ -81,6 +81,7 @@ while is_run == True:
         add_new_post_to_end_of_list(posts, new_post)
 
         print("Пост успешно добавлен")
+
     elif choose_action == 3:
         id = int(input("Введите ИД поста: "))
 
@@ -94,7 +95,6 @@ while is_run == True:
         else:
             print(f"Пост с ИД = {id} не найден")
 
-        pass
     elif choose_action == 4:
         id = int(input("Введите ИД поста: "))
 
@@ -110,3 +110,4 @@ while is_run == True:
 
     print("=" * 50)
     input("Для продолжения нажмите <Enter>")
+    print("\n" * 10)
