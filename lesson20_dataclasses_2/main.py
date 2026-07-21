@@ -5,38 +5,39 @@ posts: list[Post] = []
 
 post_1 = Post(
     id=get_next_post_id(),
-    posting_datetime="2026-07-21T14:30:00Z",
+    posting_datetime="14:30:00 21.07.2026",
     media_url="https://example.com",
     description="Прекрасный закат на побережье! #отпуск #море",
 )
 
 post_2 = Post(
     id=get_next_post_id(),
-    posting_datetime="2026-07-21T20:00:00Z",
+    posting_datetime="20:00:00 21.07.2026",
     media_url="https://example.com",
     description="Пошаговый рецепт идеальной итальянской пасты за 15 минут.",
 )
 
 post_3 = Post(
     id=get_next_post_id(),
-    posting_datetime="2026-07-22T09:00:00Z",
+    posting_datetime="09:00:00 22.07.2026",
     media_url="https://example.com",
     description="Утреннее кардио: 10-минутная зарядка для бодрости на весь день. Комплекс упражнений внутри.",
 )
 
 post_4 = Post(
     id=get_next_post_id(),
-    posting_datetime="2026-07-22T14:30:00Z",
+    posting_datetime="14:30:00 22.07.2026",
     media_url="https://example.com",
     description="Топ-5 книг по личной эффективности, которые изменят ваше отношение к тайм-менеджменту.",
 )
 
 post_5 = Post(
     id=get_next_post_id(),
-    posting_datetime="2026-07-23T18:15:00Z",
+    posting_datetime="18:15:00 23.07.2026",
     media_url="https://example.com",
     description="Итоги нашей поездки в горы: честный отзыв об отелях, маршрутах и скрытых локациях.",
 )
+
 
 add_new_post_to_end_of_list(posts, post_1)
 add_new_post_to_end_of_list(posts, post_2)
