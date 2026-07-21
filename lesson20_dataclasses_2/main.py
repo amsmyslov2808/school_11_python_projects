@@ -73,11 +73,27 @@ while is_run == True:
             print_post_header()
             print_one_post(found_post)
         else:
-            print("Пост не найден")
+            print(f"Пост с ИД = {id} не найден")
 
     elif choose_action == 2:
-        pass
+        new_post = input_post_data()
+        new_post.id = get_next_post_id()
+        add_new_post_to_end_of_list(posts, new_post)
+
+        print("Пост успешно добавлен")
     elif choose_action == 3:
+        id = int(input("Введите ИД поста: "))
+
+        update_post = input_post_data()
+        update_post.id = id
+
+        is_updated = update_post_by_id(posts, update_post)
+
+        if is_updated == True:
+            print("Успешно обновлено")
+        else:
+            print(f"Пост с ИД = {id} не найден")
+
         pass
     elif choose_action == 4:
         pass
