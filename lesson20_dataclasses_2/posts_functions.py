@@ -73,5 +73,8 @@ def print_one_post(post: Post):
 def print_posts(posts: list[Post]):
     print_post_header()
 
-    for post in posts:
-        print_one_post(post)
+    if len(posts) > 0:
+        for post in posts:
+            print_one_post(post)
+    else:
+        print("список постов пуст")

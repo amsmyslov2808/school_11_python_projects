@@ -3,6 +3,19 @@ from posts_functions import *
 
 posts: list[Post] = []
 
+is_run = True
+
+while is_run == True:
+
+    print("*" * 20)
+
+    print_posts(posts)
+
+    print("*" * 20)
+
+    print("Меню:")
+
+
 # new_post = input_post_data()
 # new_post.id = get_next_post_id()
 
