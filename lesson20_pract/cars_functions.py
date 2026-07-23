@@ -37,3 +37,51 @@ def print_one_car(car: Car):
 def print_all_cars(cars: list[Car]):
     for car in cars:
         print_one_car(car)
+
+
+def fill_cars_mock_data(cars: list[Car]):
+    car1 = Car(
+        brand="Tesla",
+        model="Model 3",
+        price=5400000,
+        photo_url="https://example.com",
+        id=get_next_car_id(),
+    )
+
+    car2 = Car(
+        brand="BMW",
+        model="M5",
+        price=14500000,
+        photo_url="https://example.com",
+        id=get_next_car_id(),
+    )
+
+    car3 = Car(
+        brand="Toyota",
+        model="RAV4",
+        price=4200000,
+        photo_url="https://example.com",
+        id=get_next_car_id(),
+    )
+
+    car4 = Car(
+        brand="Porsche",
+        model="911 Carrera",
+        price=18500000,
+        photo_url="https://example.com",
+        id=get_next_car_id(),
+    )
+
+    car5 = Car(
+        brand="Hyundai",
+        model="Ioniq 5",
+        price=5900000,
+        photo_url="https://example.com",
+        id=get_next_car_id(),
+    )
+
+    add_new_car(car1)
+    add_new_car(car2)
+    add_new_car(car3)
+    add_new_car(car4)
+    add_new_car(car5)

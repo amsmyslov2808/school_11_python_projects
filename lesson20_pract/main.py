@@ -3,6 +3,7 @@ from cars_functions import *
 
 cars: list[Car] = []
 
+fill_cars_mock_data(cars)
 
 is_run = True
 
