@@ -44,6 +44,6 @@ while is_run == True:
     elif choose_action == 0:
         is_run = False
 
-    print("=" * 50)
+    print("." * 50)
     input("Для продолжения нажмите <Enter>")
     print("\n" * 10)

@@ -88,8 +88,8 @@ def fill_cars_mock_data(cars: list[Car]):
         id=get_next_car_id(),
     )
 
-    add_new_car(car1)
-    add_new_car(car2)
-    add_new_car(car3)
-    add_new_car(car4)
-    add_new_car(car5)
+    add_new_car(cars, car1)
+    add_new_car(cars, car2)
+    add_new_car(cars, car3)
+    add_new_car(cars, car4)
+    add_new_car(cars, car5)
