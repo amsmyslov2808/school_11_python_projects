@@ -22,9 +22,17 @@ while is_run == True:
     choose_action = int(input("Введите номер выбранного пункта меню: "))
 
     if choose_action == 1:
-        pass
+        id = int(input("Введите ИД машины: "))
+
+        found_car = get_car_by_id(cars, id)
+
+        if found_car != None:
+            print_one_car(found_car)
+        else:
+            print(f"Машина с ИД = {id} не найдена")
     elif choose_action == 2:
-        pass
+        
+        
     elif choose_action == 3:
         pass
     elif choose_action == 4:

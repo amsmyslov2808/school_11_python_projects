@@ -24,6 +24,14 @@ def add_new_car(cars: list[Car], new_car: Car):
     cars.append(new_car)
 
 
+def get_car_by_id(cars: list[Car], id: int) -> Car | None:
+    for car in cars:
+        if car.id == id:
+            return car
+
+    return None
+
+
 def print_one_car(car: Car):
     print("=" * 20)
     print(f"ИД: {car.id}")
