@@ -31,8 +31,12 @@ while is_run == True:
         else:
             print(f"Машина с ИД = {id} не найдена")
     elif choose_action == 2:
-        
-        
+        new_car = input_car_data()
+        new_car.id = get_next_car_id()
+
+        add_new_car(cars, new_car)
+
+        print("Машина успешно добавлена")
     elif choose_action == 3:
         pass
     elif choose_action == 4:
