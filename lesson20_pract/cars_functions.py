@@ -46,6 +46,17 @@ def update_car_by_id(cars: list[Car], car: Car) -> bool:
     return True
 
 
+def delete_car_by_id(cars: list[Car], id: int) -> bool:
+    found_car = get_car_by_id(cars, id)
+
+    if found_car == None:
+        return False
+
+    cars.remove(found_car)
+
+    return True
+
+
 def print_one_car(car: Car):
     print("=" * 20)
     print(f"ИД: {car.id}")

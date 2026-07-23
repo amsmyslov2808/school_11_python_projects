@@ -48,10 +48,17 @@ while is_run == True:
         if is_updated == True:
             print("Успешно обновлено")
         else:
-            print(f"Пост с ИД = {id} не найден")
+            print(f"Машина с ИД = {id} не найдена")
 
     elif choose_action == 4:
-        pass
+        id = int(input("Введите ИД машины: "))
+
+        is_deleted = delete_car_by_id(cars, id)
+
+        if is_deleted == True:
+            print("Успешно удалено")
+        else:
+            print(f"Машина с ИД = {id} не найдена")
     elif choose_action == 0:
         is_run = False
 
