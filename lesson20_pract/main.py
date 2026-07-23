@@ -3,15 +3,31 @@ from cars_functions import *
 
 cars: list[Car] = []
 
-new_car = input_car_data()
-new_car.id = get_next_car_id()
 
-add_new_car(cars, new_car)
+is_run = True
 
-new_car = input_car_data()
-new_car.id = get_next_car_id()
+while is_run == True:
 
-add_new_car(cars, new_car)
+    print("Меню:")
+    print("1. Вывести машину по ИД")
+    print("2. Добавить новую машину")
+    print("3. Обновить машину по ИД")
+    print("4. Удалить машину по ИД")
+    print("0. Выйти из программы")
 
+    choose_action = int(input("Введите номер выбранного пункта меню: "))
 
-print_all_cars(cars)
+    if choose_action == 1:
+        pass
+    elif choose_action == 2:
+        pass
+    elif choose_action == 3:
+        pass
+    elif choose_action == 4:
+        pass
+    elif choose_action == 0:
+        is_run = False
+
+    print("=" * 50)
+    input("Для продолжения нажмите <Enter>")
+    print("\n" * 10)
