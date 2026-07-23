@@ -1,5 +1,15 @@
 from car import Car
 
+global_car_id = 0
+
+
+def get_next_car_id():
+    global global_car_id
+
+    global_car_id += 1
+
+    return global_car_id
+
 
 def input_car_data() -> Car:
     brand = input("введите марку автомобиля: ")
