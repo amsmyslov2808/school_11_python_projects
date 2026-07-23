@@ -38,7 +38,18 @@ while is_run == True:
 
         print("Машина успешно добавлена")
     elif choose_action == 3:
-        pass
+        id = int(input("Введите ИД машины: "))
+        car = input_car_data()
+
+        car.id = id
+
+        is_updated = update_car_by_id(cars, car)
+
+        if is_updated == True:
+            print("Успешно обновлено")
+        else:
+            print(f"Пост с ИД = {id} не найден")
+
     elif choose_action == 4:
         pass
     elif choose_action == 0:

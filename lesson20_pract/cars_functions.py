@@ -32,6 +32,20 @@ def get_car_by_id(cars: list[Car], id: int) -> Car | None:
     return None
 
 
+def update_car_by_id(cars: list[Car], car: Car) -> bool:
+    found_car = get_car_by_id(cars, car.id)
+
+    if found_car == None:
+        return False
+
+    found_car.brand = car.brand
+    found_car.model = car.model
+    found_car.price = car.price
+    found_car.photo_url = car.photo_url
+
+    return True
+
+
 def print_one_car(car: Car):
     print("=" * 20)
     print(f"ИД: {car.id}")
