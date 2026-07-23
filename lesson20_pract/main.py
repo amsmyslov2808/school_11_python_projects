@@ -9,6 +9,9 @@ is_run = True
 
 while is_run == True:
 
+    print("Список машин:")
+    print_all_cars(cars)
+
     print("Меню:")
     print("1. Вывести машину по ИД")
     print("2. Добавить новую машину")
