@@ -13,3 +13,6 @@ class Product:
     rating: float
     amount: int
     id: int | None = None
+
+    def release_date_to_str(self) -> str:
+        return str(self.release_date)

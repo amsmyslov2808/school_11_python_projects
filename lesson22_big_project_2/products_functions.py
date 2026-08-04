@@ -9,7 +9,7 @@ def get_next_product_id() -> int:
 
     global_product_id += 1
 
-    return get_product_by_id
+    return global_product_id
 
 
 def input_product_data() -> Product:
@@ -57,16 +57,39 @@ def delete_product_by_id(products: list[Product], search_id: int) -> bool:
 
 
 def print_table_products_header():
-    pass
+    print(
+        f"{'ИД':<5}"
+        f"{'Иконка':<10}"
+        f"{'Дата выпуска':<15}"
+        f"{'Название':<25}"
+        f"{'Категория':<20}"
+        f"{'Цена(руб.)':<12}"
+        f"{'Рейтинг':<10}"
+        f"{'Количество':<12}"
+    )
 
 
 def print_single_product(product: Product):
-    pass
+    print(
+        f"{product.id:<5}"
+        f"{product.icon:<10}"
+        f"{product.release_date_to_str():<15}"
+        f"{product.name:<25}"
+        f"{product.category:<20}"
+        f"{product.price:<12}"
+        f"{product.rating:<10}"
+        f"{product.amount:<12}"
+    )
 
 
 def print_all_products(products: list[Product]):
-    for product in products:
-        print_single_product(product)
+    print_table_products_header()
+
+    if len(products) > 0:
+        for product in products:
+            print_single_product(product)
+    else:
+        print("Список товаров пуст")
 
 
 def sort_products_by_type_sort(products: list[Product], type_sort: int):
