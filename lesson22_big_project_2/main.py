@@ -29,6 +29,3 @@ while is_run == True:
             print("Ошибка ввода пароля администратора")
     elif choose_action_main_menu == 0:
         is_run = False
-
-# kjlsbfkljsd
-# setsdklmfnsdlkj
