@@ -23,6 +23,15 @@ def input_product_data() -> Product:
     amount = input_int(
         "Введите количество товара на складе (от 1 до 10 000 ед.): ", 1, 10_000
     )
+    return Product(
+        icon=icon,
+        release_date=release_date,
+        name=name,
+        category=category,
+        price=price,
+        rating=rating,
+        amount=amount,
+    )
 
 
 def get_product_by_id(products: list[Product], search_id: int) -> Product | None:
