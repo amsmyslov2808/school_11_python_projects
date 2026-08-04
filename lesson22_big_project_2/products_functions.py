@@ -1,5 +1,6 @@
 from product import Product
 from datetime import date
+from console_helper import *
 
 global_product_id = 0
 
@@ -13,7 +14,15 @@ def get_next_product_id() -> int:
 
 
 def input_product_data() -> Product:
-    pass
+    icon = input_str("Вставьте иконку товара: ", 1, 1)
+    release_date = input_date("Введите дату производства в формет ДД.ММ.ГГГГ: ")
+    name = input_str("Введите название товара (от 1 до 25 символов): ", 1, 25)
+    category = input_str("Введите категорию товара (от 1 до 20 символов): ", 1, 20)
+    price = input_int("Введите цену товара (от 1 до 10 000 000 руб.): ", 1, 10_000_000)
+    rating = input_int("Введите рейтинг товара (от 1 до 5, можно дробный): ", 1, 5)
+    amount = input_int(
+        "Введите количество товара на складе (от 1 до 10 000 ед.): ", 1, 10_000
+    )
 
 
 def get_product_by_id(products: list[Product], search_id: int) -> Product | None:
