@@ -81,9 +81,9 @@ def delete_product_by_id(products: list[Product], search_id: int) -> bool:
 def print_table_products_header():
     print(
         f"{'ИД':<5}"
-        f"{'Иконка':<10}"
-        f"{'Дата выпуска':<15}"
-        f"{'Название':<25}"
+        f"{'Иконка':<15}"
+        f"{'Дата выпуска':<20}"
+        f"{'Название':<35}"
         f"{'Категория':<20}"
         f"{'Цена(руб.)':<12}"
         f"{'Рейтинг':<10}"
@@ -94,9 +94,9 @@ def print_table_products_header():
 def print_single_product(product: Product):
     print(
         f"{product.id:<5}"
-        f"{product.icon:<10}"
-        f"{product.release_date_to_str():<15}"
-        f"{product.name:<25}"
+        f"{product.icon:<15}"
+        f"{product.release_date_to_str():<20}"
+        f"{product.name:<35}"
         f"{product.category:<20}"
         f"{product.price:<12}"
         f"{product.rating:<10}"

@@ -114,39 +114,71 @@ for prod in mock_products:
     add_product_to_list(products, prod)
 
 
-def print_all_products():
-    pass
+def print_products():
+    print("Список товаров магазина NeDikayaMalina")
+    print_all_products(products)
+    print("=" * 125)
 
 
 def print_main_menu():
-
-    pass
+    print("Главное меню:")
+    print("1. Меню Покупателя")
+    print("2. Меню Администратора")
+    print("0. Выход")
 
 
 def work_with_buyer_menu():
-    pass
+    is_run_buyer_menu = True
+    while is_run_buyer_menu == True:
+        print("Меню Покупателя:")
+        print("1. Найти товар по ID")
+        print("2. Сортировать товар")
+        print("3. Найти товар")
+        print("4. Купить товар")
+        print("5. Загрузить товары из текстового файла")
+        print("6. Сохранить товары в текстовый файл")
+        print("7. Сохранить товары в текстовый файл для печати")
+        print("0. В Главное меню")
+
+        choose_action_buyer_menu = input_int("Выберите пункт меню: ", 0, 7)
 
 
 def auth_is_administrator():
-    pass
+    password = input_str(
+        "Введите пароль Администратора для входа в Меню Администратора: ", 4, 16
+    )
+    return password == "12345"  # todo вынести в отдельную константу
 
 
 def work_with_administrator_menu():
-    pass
+    is_run_administrator_menu = True
+    while is_run_administrator_menu == True:
+        print("Меню Администратора:")
+        print("1. Найти товар по ID")
+        print("2. Добавить новый товар")
+        print("3. Изменить товар по ID")
+        print("4. Удалить товар по ID")
+        print("5. Загрузить товары из текстового файла")
+        print("6. Сохранить товары в текстовый файл")
+        print("7. Сохранить товары в текстовый файл для печати")
+        print("0. В Главное меню")
+
+        choose_action_administrator_menu = input_int("Выберите пункт меню: ", 0, 7)
 
 
 is_run = True
 
 while is_run == True:
-    print_all_products()
+    print_products()
 
     print_main_menu()
-    choose_action_main_menu = input_int("Выберите пункт меню: ", 0, 5)
+    choose_action_main_menu = input_int("Выберите пункт меню: ", 0, 2)
 
     if choose_action_main_menu == 1:
         work_with_buyer_menu()
     elif choose_action_main_menu == 2:
         if auth_is_administrator() == True:
+            print("Пароль успешно введён")
             work_with_administrator_menu()
         else:
             print("Ошибка ввода пароля администратора")

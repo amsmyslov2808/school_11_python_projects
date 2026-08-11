@@ -15,4 +15,4 @@ class Product:
     id: int | None = None
 
     def release_date_to_str(self) -> str:
-        return str(self.release_date)
+        return self.release_date.strftime("%d.%m.%Y")
