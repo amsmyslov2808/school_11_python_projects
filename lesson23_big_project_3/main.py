@@ -1,12 +1,18 @@
+# Подключаем класс-карточку Product, тип даты и готовые функции из соседних файлов.
 from product import Product
 from datetime import date
 from console_helper import *
 from products_functions import *
 
+# Это главная «полка» магазина: здесь будут храниться все товары программы.
+# Запись list[Product] подсказывает, что список предназначен для объектов Product.
 products: list[Product] = []
 
-# Создаем список из 10 моковых продуктов с динамическим ID
+# Создаём десять тестовых товаров. Они нужны, чтобы программу можно было сразу
+# запустить и проверить, не вводя все данные вручную.
 mock_products = [
+    # Каждый вызов Product(...) похож на заполнение одной карточки товара.
+    # get_next_product_id() выдаёт следующий свободный номер.
     Product(
         id=get_next_product_id(),
         icon="🧥",
@@ -17,6 +23,7 @@ mock_products = [
         amount=120,
         release_date=date(2025, 10, 15),
     ),
+    # Остальные карточки устроены так же, но содержат данные других товаров.
     Product(
         id=get_next_product_id(),
         icon="👟",
@@ -109,18 +116,21 @@ mock_products = [
     ),
 ]
 
-# Добавляем все продукты в список
+# Перекладываем тестовые товары из временного списка в главный список магазина.
 for prod in mock_products:
     add_product_to_list(products, prod)
 
 
 def print_products():
+    """Печатает название магазина, таблицу товаров и линию-разделитель."""
     print("Список товаров магазина NeDikayaMalina")
     print_all_products(products)
+    # Умножение строки повторяет знак «=» 125 раз.
     print("=" * 125)
 
 
 def print_main_menu():
+    """Показывает пункты главного меню."""
     print("Главное меню:")
     print("1. Меню Покупателя")
     print("2. Меню Администратора")
@@ -128,6 +138,8 @@ def print_main_menu():
 
 
 def work_with_buyer_menu():
+    """Показывает меню покупателя, пока пользователь не решит выйти из него."""
+    # True означает, что меню должно продолжать работать.
     is_run_buyer_menu = True
     while is_run_buyer_menu == True:
         print("Меню Покупателя:")
@@ -140,18 +152,25 @@ def work_with_buyer_menu():
         print("7. Сохранить товары в текстовый файл для печати")
         print("0. В Главное меню")
 
+        # input_int не пропустит текст или номер пункта вне диапазона от 0 до 7.
+        # Выбранный пункт сохранён для будущей обработки команд этого меню.
         choose_action_buyer_menu = input_int("Выберите пункт меню: ", 0, 7)
 
 
 def auth_is_administrator():
+    """Проверяет пароль и возвращает True, если он правильный."""
+    # Пароль должен содержать от 4 до 16 символов.
     password = input_str(
         "Введите пароль Администратора для входа в Меню Администратора: ", 4, 16
     )
+    # Сравнение == само даёт True или False, поэтому отдельный if здесь не нужен.
     return password == "12345"  # todo вынести в отдельную константу
 
 
 def work_with_administrator_menu():
+    """Обрабатывает команды меню администратора."""
     is_run_administrator_menu = True
+    # Меню повторяется после каждой команды, пока флаг остаётся равен True.
     while is_run_administrator_menu == True:
         print("Меню Администратора:")
         print("1. Найти товар по ID")
@@ -165,22 +184,58 @@ def work_with_administrator_menu():
 
         choose_action_administrator_menu = input_int("Выберите пункт меню: ", 0, 7)
 
+        # В зависимости от выбранного номера выполняется только одна ветка.
+        if choose_action_administrator_menu == 1:
+            # Запрашиваем ID и пробуем найти карточку с таким номером.
+            search_id = input_int("Введите ID товара для поиска: ", 1, 10000)
+            found_product = get_product_by_id(products, search_id)
 
+            # None можно представить как пустую коробку: товара внутри нет.
+            if found_product == None:
+                print(f"Продукт с ID {search_id} не найден")
+            else:
+                # Если товар найден, сначала печатаем шапку таблицы, затем его строку.
+                print_table_products_header()
+                print_single_product(found_product)
+        elif choose_action_administrator_menu == 2:
+            # Эти пункты пока оставлены как заготовки для следующих этапов проекта.
+            pass
+        elif choose_action_administrator_menu == 3:
+            pass
+        elif choose_action_administrator_menu == 4:
+            pass
+        elif choose_action_administrator_menu == 5:
+            pass
+        elif choose_action_administrator_menu == 6:
+            pass
+        elif choose_action_administrator_menu == 7:
+            pass
+        elif choose_action_administrator_menu == 0:
+            # Меняем флаг на False — на следующей проверке цикл завершится.
+            is_run_administrator_menu = False
+
+
+# Главный переключатель всей программы.
 is_run = True
 
+# Этот цикл можно представить как двигатель программы: пока он включён,
+# пользователь видит товары и главное меню.
 while is_run == True:
     print_products()
 
     print_main_menu()
     choose_action_main_menu = input_int("Выберите пункт меню: ", 0, 2)
 
+    # Направляем пользователя в нужную часть программы по номеру пункта.
     if choose_action_main_menu == 1:
         work_with_buyer_menu()
     elif choose_action_main_menu == 2:
+        # В меню администратора можно попасть только после проверки пароля.
         if auth_is_administrator() == True:
             print("Пароль успешно введён")
             work_with_administrator_menu()
         else:
             print("Ошибка ввода пароля администратора")
     elif choose_action_main_menu == 0:
+        # False выключает главный цикл и завершает программу.
         is_run = False
