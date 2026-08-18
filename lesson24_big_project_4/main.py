@@ -167,6 +167,11 @@ def work_with_buyer_menu():
         elif choose_action_buyer_menu == 0:
             is_run_buyer_menu = False
 
+        print("\n\n")
+        print("=" * 125)
+        print("\n\nДля продолжения работы нажмите <Enter>\n\n")
+        input()
+
 
 def auth_is_administrator():
     """Проверяет пароль и возвращает True, если он правильный."""
@@ -209,12 +214,41 @@ def work_with_administrator_menu():
                 print_table_products_header()
                 print_single_product(found_product)
         elif choose_action_administrator_menu == 2:
-            # Эти пункты пока оставлены как заготовки для следующих этапов проекта.
-            pass
+            print("Введите данные нового продукта")
+
+            new_product = input_product_data()
+
+            new_product.id = get_next_product_id()
+
+            add_product_to_list(products, new_product)
+
+            print("Товар успешно добавлен")
         elif choose_action_administrator_menu == 3:
-            pass
+            update_id = input_int("Введите ID товара для обновления: ", 1, 1_000_000)
+            found_product = get_product_by_id(products, update_id)
+
+            if found_product == None:
+                print(f"Продукт с ID {update_id} не найден")
+            else:
+                print("Введите новые данные для продукта ")
+
+                update_product = input_product_data()
+
+                update_product.id = update_id
+
+                update_product_by_id(products, update_product)
+
+                print("Продукт успешно обновлён")
+
         elif choose_action_administrator_menu == 4:
-            pass
+            delete_id = input_int("Введите ID товара для удаления: ", 1, 1_000_000)
+
+            is_deleted = delete_product_by_id(products, delete_id)
+
+            if is_deleted == False:
+                print(f"Продукт с ID {delete_id} не найден")
+            else:
+                print("Продукт успешно удалён")
         elif choose_action_administrator_menu == 5:
             pass
         elif choose_action_administrator_menu == 6:
@@ -224,6 +258,11 @@ def work_with_administrator_menu():
         elif choose_action_administrator_menu == 0:
             # Меняем флаг на False — на следующей проверке цикл завершится.
             is_run_administrator_menu = False
+
+        print("\n\n")
+        print("=" * 125)
+        print("\n\nДля продолжения работы нажмите <Enter>\n\n")
+        input()
 
 
 # Главный переключатель всей программы.
