@@ -34,10 +34,12 @@ def input_int(message: str, min_val: int, max_val: int) -> int:
 
 def input_float(message: str, min_val: float, max_val: float) -> float:
     """Запрашивает число, которое может содержать дробную часть."""
+    # Флаг остаётся False, пока пользователь не введёт число в допустимом диапазоне.
     is_correct_input = False
     # Несмотря на имя input_int, ниже переменная может хранить и дробное число.
     input_int = 0
 
+    # Повторяем запрос после любой ошибки преобразования или проверки диапазона.
     while is_correct_input == False:
         try:
             # float() понимает, например, строку "4.5" и превращает её в число 4.5.
@@ -49,6 +51,7 @@ def input_float(message: str, min_val: float, max_val: float) -> float:
                     f"Ошибка ввода. Введённое число должно быть от {min_val} до {max_val}"
                 )
             else:
+                # Верное число позволяет завершить цикл.
                 is_correct_input = True
         except:
             # Этот блок выполняется, если пользователь ввёл не число.
@@ -59,9 +62,12 @@ def input_float(message: str, min_val: float, max_val: float) -> float:
 
 def input_str(message: str, min_len: int, max_len: int) -> str:
     """Запрашивает текст нужной длины."""
+    # Флаг показывает, прошла ли строка проверку длины.
     is_correct_input = False
+    # Пустая строка — безопасное начальное значение переменной результата.
     input_str = ""
 
+    # Запрос повторяется, пока длина текста не окажется в заданных границах.
     while is_correct_input == False:
         # Здесь преобразование не требуется: input() уже возвращает строку.
         input_str = input(message)
@@ -72,6 +78,7 @@ def input_str(message: str, min_len: int, max_len: int) -> str:
                 f"Ошибка ввода. Введённая строка по длине должна быть от {min_len} до {max_len} сиволов"
             )
         else:
+            # Строка подходит по длине, можно вернуть её вызывающему коду.
             is_correct_input = True
 
     return input_str
@@ -79,10 +86,12 @@ def input_str(message: str, min_len: int, max_len: int) -> str:
 
 def input_date(message: str, min_date: date, max_date: date) -> date:
     """Запрашивает дату в формате ДД.ММ.ГГГГ и проверяет её границы."""
+    # Флаг управляет повтором ввода при неправильной дате.
     is_correct_input = False
     # Сегодняшняя дата служит безопасным начальным значением.
     input_date = date.today()
 
+    # Просим дату снова до тех пор, пока она не будет корректной и допустимой.
     while is_correct_input == False:
         try:
             # strptime работает как переводчик: превращает текст вроде 25.08.2026 в дату.
@@ -95,6 +104,7 @@ def input_date(message: str, min_date: date, max_date: date) -> date:
                     f"Ошибка ввода. Введённая дата должна быть от {min_date.strftime('%d.%m.%Y')} до {max_date.strftime('%d.%m.%Y')}"
                 )
             else:
+                # Подходящая дата завершает цикл проверки.
                 is_correct_input = True
         except:
             # Например, 40.15.2026 не является настоящей датой и вызовет ошибку.

@@ -185,6 +185,7 @@ def auth_is_administrator():
 
 def work_with_administrator_menu():
     """Обрабатывает команды меню администратора."""
+    # Флаг управляет повторным показом меню до команды возврата назад.
     is_run_administrator_menu = True
     # Меню повторяется после каждой команды, пока флаг остаётся равен True.
     while is_run_administrator_menu == True:
@@ -198,6 +199,7 @@ def work_with_administrator_menu():
         print("7. Сохранить товары в текстовый файл для печати")
         print("0. В Главное меню")
 
+        # Принимаем только номера существующих пунктов меню.
         choose_action_administrator_menu = input_int("Выберите пункт меню: ", 0, 7)
 
         # В зависимости от выбранного номера выполняется только одна ветка.
@@ -214,6 +216,7 @@ def work_with_administrator_menu():
                 print_table_products_header()
                 print_single_product(found_product)
         elif choose_action_administrator_menu == 2:
+            # Собираем данные, присваиваем свободный ID и добавляем новую карточку.
             print("Введите данные нового продукта")
 
             new_product = input_product_data()
@@ -224,12 +227,14 @@ def work_with_administrator_menu():
 
             print("Товар успешно добавлен")
         elif choose_action_administrator_menu == 3:
+            # Сначала убеждаемся, что товар для изменения существует.
             update_id = input_int("Введите ID товара для обновления: ", 1, 1_000_000)
             found_product = get_product_by_id(products, update_id)
 
             if found_product == None:
                 print(f"Продукт с ID {update_id} не найден")
             else:
+                # Новые данные вводятся отдельно, а старый ID сохраняется.
                 print("Введите новые данные для продукта ")
 
                 update_product = input_product_data()
@@ -241,6 +246,7 @@ def work_with_administrator_menu():
                 print("Продукт успешно обновлён")
 
         elif choose_action_administrator_menu == 4:
+            # Функция удаления возвращает результат, чтобы показать подходящее сообщение.
             delete_id = input_int("Введите ID товара для удаления: ", 1, 1_000_000)
 
             is_deleted = delete_product_by_id(products, delete_id)
@@ -250,11 +256,29 @@ def work_with_administrator_menu():
             else:
                 print("Продукт успешно удалён")
         elif choose_action_administrator_menu == 5:
+            # Загрузка из файла будет добавлена позднее.
             pass
         elif choose_action_administrator_menu == 6:
-            pass
+            # Записываем полный набор данных товаров в указанный файл.
+            filename = input_str("Введите имя файла для сохранения: ", 4, 100)
+
+            is_saved = save_products_to_txt_file(products, filename)
+
+            if is_saved == False:
+                print("Ошибка сохранения файла")
+            else:
+                print("Файл успешно сохранён")
         elif choose_action_administrator_menu == 7:
-            pass
+            # Создаём печатную версию списка в виде отформатированной таблицы.
+            filename = input_str("Введите имя файла для сохранения: ", 4, 100)
+
+            is_saved = save_products_to_txt_file_for_print(products, filename)
+
+            if is_saved == False:
+                print("Ошибка сохранения файла")
+            else:
+                print("Файл успешно сохранён")
+
         elif choose_action_administrator_menu == 0:
             # Меняем флаг на False — на следующей проверке цикл завершится.
             is_run_administrator_menu = False
@@ -271,8 +295,10 @@ is_run = True
 # Этот цикл можно представить как двигатель программы: пока он включён,
 # пользователь видит товары и главное меню.
 while is_run == True:
+    # Перед выбором действия показываем актуальный список товаров.
     print_products()
 
+    # Получаем команду верхнего уровня: покупатель, администратор или выход.
     print_main_menu()
     choose_action_main_menu = input_int("Выберите пункт меню: ", 0, 2)
 

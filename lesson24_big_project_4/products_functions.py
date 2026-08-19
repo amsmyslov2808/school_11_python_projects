@@ -61,6 +61,7 @@ def get_product_by_id(products: list[Product], search_id: int) -> Product | None
 
 def add_product_to_list(products: list[Product], product: Product):
     """Добавляет карточку товара в конец списка."""
+    # append() сохраняет объект последней строкой списка.
     products.append(product)
 
 
@@ -164,10 +165,76 @@ def load_products_from_txt_file(filename: str) -> list[Product]:
 
 
 def save_products_to_txt_file(products: list[Product], filename: str) -> bool:
-    """В будущем будет сохранять товары в текстовый файл."""
-    pass
+    """Сохраняет полные данные товаров в файл и сообщает об успехе."""
+    try:
+        # Режим w создаёт новый файл или заменяет содержимое существующего.
+        with open(filename, "w", encoding="utf-8") as file_out:
+            # Первой строкой сохраняем число карточек: оно понадобится при загрузке.
+            file_out.write(f"{len(products)}\n")
+
+            if len(products) > 0:
+                # Каждое свойство занимает отдельную строку, чтобы его было легко прочитать.
+                for product in products:
+                    file_out.write(
+                        f"{product.id}\n"
+                        f"{product.icon}\n"
+                        f"{product.release_date_to_str()}\n"
+                        f"{product.name}\n"
+                        f"{product.category}\n"
+                        f"{product.price}\n"
+                        f"{product.rating}\n"
+                        f"{product.amount}\n"
+                    )
+            else:
+                # Для пустого списка записываем понятное пользователю сообщение.
+                file_out.write("Список товаров пуст")
+
+        # Файл успешно закрыт после выхода из with.
+        return True
+    except:
+        # Любая ошибка открытия или записи означает, что сохранить файл не удалось.
+        return False
 
 
 def save_products_to_txt_file_for_print(products: list[Product], filename: str) -> bool:
-    """В будущем будет сохранять товары в удобном для печати виде."""
-    pass
+    """Сохраняет список товаров в виде таблицы, удобной для печати."""
+    try:
+        # Открываем файл в кодировке UTF-8, чтобы корректно сохранить кириллицу и эмодзи.
+        with open(filename, "w", encoding="utf-8") as file_out:
+            # Добавляем название магазина перед таблицей.
+            file_out.write("Список товаров магазина NeDikayaMalina\n\n")
+
+            # Шапка использует ту же ширину столбцов, что и вывод в консоль.
+            file_out.write(
+                f"{'ИД':<5}"
+                f"{'Иконка':<15}"
+                f"{'Дата выпуска':<20}"
+                f"{'Название':<35}"
+                f"{'Категория':<20}"
+                f"{'Цена(руб.)':<12}"
+                f"{'Рейтинг':<10}"
+                f"{'Количество':<12}"
+                "\n"
+            )
+
+            if len(products) > 0:
+                # Записываем по одной выровненной строке для каждой карточки.
+                for product in products:
+                    file_out.write(
+                        f"{product.id:<5}"
+                        f"{product.icon:<15}"
+                        f"{product.release_date_to_str():<20}"
+                        f"{product.name:<35}"
+                        f"{product.category:<20}"
+                        f"{product.price:<12}"
+                        f"{product.rating:<10}"
+                        f"{product.amount:<12}"
+                        "\n"
+                    )
+            else:
+                file_out.write("Список товаров пуст")
+
+        return True
+    except:
+        # Возвращаем False, чтобы вызывающий код мог вывести сообщение об ошибке.
+        return False
