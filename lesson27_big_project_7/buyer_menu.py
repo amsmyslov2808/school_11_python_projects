@@ -71,8 +71,8 @@ def work_with_find_products_sub_menu(products: list[Product]):
         )
 
         max_price = input_int(
-            "Введите максимальную цену товара для поиска (от 1 до 10 000 000 руб.): ",
-            1,
+            f"Введите максимальную цену товара для поиска (от {min_price} до 10 000 000 руб.): ",
+            min_price,
             10_000_000,
         )
 

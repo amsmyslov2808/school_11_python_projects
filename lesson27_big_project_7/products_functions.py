@@ -1,5 +1,5 @@
 from product import Product
-from datetime import date
+from datetime import date, datetime
 from console_helper import *
 
 SEARCH_BY_PART_NAME = 1
@@ -27,7 +27,7 @@ def get_next_product_id() -> int:
 
 def input_product_data() -> Product:
 
-    icon = input_str("Вставьте иконку товара: ", 1, 1)
+    icon = input_str("Вставьте иконку товара (одно эмодзи): ", 1, 10)
     release_date = input_date(
         "Введите дату производства в формет ДД.ММ.ГГГГ: ",
         date(2026, 1, 1),
@@ -201,25 +201,20 @@ def save_products_to_txt_file(products: list[Product], filename: str) -> bool:
         with open(filename, "w", encoding="utf-8") as file_out:
 
             file_out.write(f"{len(products)}\n")
+            file_out.write(f"{global_product_id}\n")
 
-            if len(products) > 0:
+            for product in products:
 
-                file_out.write(f"{global_product_id}\n")
-                for product in products:
-
-                    file_out.write(
-                        f"{product.id}\n"
-                        f"{product.icon}\n"
-                        f"{product.convert_date_to_str()}\n"
-                        f"{product.name}\n"
-                        f"{product.category}\n"
-                        f"{product.price}\n"
-                        f"{product.rating}\n"
-                        f"{product.amount}\n"
-                    )
-            else:
-
-                file_out.write("Список товаров пуст")
+                file_out.write(
+                    f"{product.id}\n"
+                    f"{product.icon}\n"
+                    f"{product.convert_date_to_str()}\n"
+                    f"{product.name}\n"
+                    f"{product.category}\n"
+                    f"{product.price}\n"
+                    f"{product.rating}\n"
+                    f"{product.amount}\n"
+                )
 
         return True
     except:

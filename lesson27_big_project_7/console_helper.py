@@ -1,4 +1,5 @@
 from datetime import date, datetime
+import math
 
 
 def input_int(message: str, min_val: int, max_val: int) -> int:
@@ -33,13 +34,15 @@ def input_float(message: str, min_val: float, max_val: float) -> float:
 
 
     is_correct_input = False
-    input_int = 0
+    value = 0
 
     while is_correct_input == False:
         try:
-            input_int = float(input(message))
+            value = float(input(message))
 
-            if input_int < min_val or input_int > max_val:
+            if not math.isfinite(value):
+                print("Ошибка ввода. Число должно быть конечным")
+            elif value < min_val or value > max_val:
                 print(
                     f"Ошибка ввода. Введённое число должно быть от {min_val} до {max_val}"
                 )
@@ -48,7 +51,7 @@ def input_float(message: str, min_val: float, max_val: float) -> float:
         except:
             print(f"Ошибка ввода. Вы ввели не целое число")
 
-    return input_int
+    return value
 
 
 def input_str(message: str, min_len: int, max_len: int) -> str:
