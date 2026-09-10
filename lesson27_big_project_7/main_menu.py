@@ -4,12 +4,14 @@ from products_functions import *
 
 
 def print_products(products: list[Product]):
+    # Печатаем название магазина, таблицу товаров и границу блока.
     print("Список товаров магазина NeDikayaMalina")
     print_all_products(products)
     print_devider("=", 125)
 
 
 def print_main_menu():
+    # Выводим доступные разделы верхнего уровня.
     print("Главное меню:")
     print("1. Меню Покупателя")
     print("2. Меню Администратора")

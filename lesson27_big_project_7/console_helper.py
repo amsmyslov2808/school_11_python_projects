@@ -3,18 +3,16 @@ import math
 
 
 def input_int(message: str, min_val: int, max_val: int) -> int:
-
-
-
-
-
+    # Повторяем ввод, пока пользователь не укажет целое число из диапазона.
     is_correct_input = False
     input_int = 0
 
     while is_correct_input == False:
         try:
+            # Преобразование в int также проверяет, что введено целое число.
             input_int = int(input(message))
 
+            # Значения за границами диапазона не принимаются.
             if input_int < min_val or input_int > max_val:
                 print(
                     f"Ошибка ввода. Введённое число должно быть от {min_val} до {max_val}"
@@ -28,11 +26,7 @@ def input_int(message: str, min_val: int, max_val: int) -> int:
 
 
 def input_float(message: str, min_val: float, max_val: float) -> float:
-
-
-
-
-
+    # Повторяем ввод, пока пользователь не укажет число из диапазона.
     is_correct_input = False
     value = 0
 
@@ -40,6 +34,7 @@ def input_float(message: str, min_val: float, max_val: float) -> float:
         try:
             value = float(input(message))
 
+            # Бесконечность и NaN проходят float(), поэтому проверяем их отдельно.
             if not math.isfinite(value):
                 print("Ошибка ввода. Число должно быть конечным")
             elif value < min_val or value > max_val:
@@ -55,11 +50,7 @@ def input_float(message: str, min_val: float, max_val: float) -> float:
 
 
 def input_str(message: str, min_len: int, max_len: int) -> str:
-
-
-
-
-
+    # Принимаем только строку с допустимым количеством символов.
     is_correct_input = False
     input_str = ""
 
@@ -77,19 +68,16 @@ def input_str(message: str, min_len: int, max_len: int) -> str:
 
 
 def input_date(message: str, min_date: date, max_date: date) -> date:
-
-
-
-
-
+    # Запрашиваем дату до получения корректного значения в заданном диапазоне.
     is_correct_input = False
     input_date = date.today()
 
     while is_correct_input == False:
         try:
-
+            # strptime одновременно разбирает строку и проверяет календарную дату.
             input_date = datetime.strptime(input(message), "%d.%m.%Y").date()
 
+            # Ограничиваем допустимый период переданными границами.
             if input_date < min_date or input_date > max_date:
                 print(
                     f"Ошибка ввода. Введённая дата должна быть от {min_date.strftime('%d.%m.%Y')} до {max_date.strftime('%d.%m.%Y')}"
@@ -103,12 +91,12 @@ def input_date(message: str, min_date: date, max_date: date) -> date:
 
 
 def print_devider(devider: str, len_diveder: int):
-
+    # Строим разделитель повторением переданного символа.
     print(devider * len_diveder)
 
 
 def wait_enter():
-
+    # Останавливаем меню, чтобы пользователь успел прочитать результат операции.
     print("\n\n")
     print_devider("=", 125)
     print("\n\nДля продолжения работы нажмите <Enter>\n\n")
