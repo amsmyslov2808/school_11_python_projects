@@ -1,12 +1,12 @@
-# 8964071869:AAGyvHLoaB0GOUvO4hiioM-PsDA7_C3s530
-
 # @pacan_citat_228_bot
 
 import telebot
 import random
 
+# Создаём объект бота. Токен выдаёт специальный бот Telegram — @BotFather.
 bot = telebot.TeleBot("8964071869:AAGyvHLoaB0GOUvO4hiioM-PsDA7_C3s530")
 
+# Из этого списка бот будет случайно выбирать цитату для команды /brat.
 quotes = [
     "Брат может не быть другом, но друг — всегда брат.",
     "Не важно, кто против тебя, важно, кто с тобой.",
@@ -26,12 +26,16 @@ quotes = [
 ]
 
 
+# Декоратор связывает функцию ниже со всеми входящими текстовыми сообщениями.
+# func всегда возвращает True, поэтому обработчик сработает для любого текста.
 @bot.message_handler(content_types=["text"], func=lambda message: True)
 def process_all_text_messages(message):
+    # Telegram передаёт сообщение в объекте message: в нём есть текст, чат и другие данные.
     input_text = message.text
     chat_id = message.chat.id
     output_text = ""
 
+    # Определяем команду пользователя и подготавливаем ответ.
     if input_text == "/start":
         output_text = "Это пацанский цитатник. Лучшие пацанские цитаты на каждый день. Для получения новой цитаты нажмите или введите /brat"
     elif input_text == "/brat":
@@ -39,8 +43,10 @@ def process_all_text_messages(message):
     else:
         output_text = "Команда не распознана. Пожалуйста введите /start"
 
+    # Отправляем подготовленный текст в тот же чат, откуда пришло сообщение.
     bot.send_message(chat_id, output_text)
 
 
 print("Бот запущен")
+# Бот постоянно запрашивает у Telegram новые сообщения и передаёт их обработчику.
 bot.infinity_polling()
