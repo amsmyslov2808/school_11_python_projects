@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Мой сайт</title>
+
+        <style>
+            .red-div{
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="red-div">
+            инфа 1
+        </div>
+        <div id="print-div">
+            инфа 2
+        </div>
+        <div>
+            инфа 3
+        </div>
+
+        <script>
+            let print_div = document.getElementById("print-div");
+            print_div.innerText += "AAAAAAA";
+        </script>
+    </body>
+</html>
