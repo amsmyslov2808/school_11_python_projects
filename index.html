@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Домашние задания на неделю</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6f8;
+      color: #202a35;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 5vw, 32px);
+      line-height: 1.2;
+    }
+
+    .description {
+      margin: 0 0 24px;
+      color: #536273;
+    }
+
+    form {
+      display: grid;
+      gap: 20px;
+    }
+
+    .day {
+      min-width: 0;
+      margin: 0;
+      padding: 20px;
+      border: 1px solid #d5dce3;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    legend {
+      padding: 0 8px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .day-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: grid;
+      min-width: 0;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid #aebbc8;
+      border-radius: 6px;
+      background: #fff;
+      color: inherit;
+      font: 400 16px/1.5 Arial, sans-serif;
+    }
+
+    input {
+      min-height: 48px;
+    }
+
+    textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+    textarea::placeholder {
+      color: #657487;
+    }
+
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid #2468c4;
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 540px) {
+      main {
+        padding: 24px 12px;
+      }
+
+      .day {
+        padding: 16px;
+      }
+
+      .day-info {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Домашние задания</h1>
+    <p class="description">Заполни дату и задания для каждого дня недели.</p>
+    <form aria-label="Домашние задания на шесть дней" onsubmit="return false">
+      <fieldset class="day">
+        <legend>День 1</legend>
+        <div class="day-info">
+          <label for="day-1">День недели
+            <input id="day-1" name="day-1" type="text" value="Понедельник">
+          </label>
+          <label for="date-1">Дата
+            <input id="date-1" name="date-1" type="date">
+          </label>
+        </div>
+        <label for="homework-1">Домашнее задание
+          <textarea id="homework-1" name="homework-1" rows="7" placeholder="Напиши, что задали на этот день…"></textarea>
+        </label>
+      </fieldset>
+      <fieldset class="day">
+        <legend>День 2</legend>
+        <div class="day-info">
+          <label for="day-2">День недели
+            <input id="day-2" name="day-2" type="text" value="Вторник">
+          </label>
+          <label for="date-2">Дата
+            <input id="date-2" name="date-2" type="date">
+          </label>
+        </div>
+        <label for="homework-2">Домашнее задание
+          <textarea id="homework-2" name="homework-2" rows="7" placeholder="Напиши, что задали на этот день…"></textarea>
+        </label>
+      </fieldset>
+      <fieldset class="day">
+        <legend>День 3</legend>
+        <div class="day-info">
+          <label for="day-3">День недели
+            <input id="day-3" name="day-3" type="text" value="Среда">
+          </label>
+          <label for="date-3">Дата
+            <input id="date-3" name="date-3" type="date">
+          </label>
+        </div>
+        <label for="homework-3">Домашнее задание
+          <textarea id="homework-3" name="homework-3" rows="7" placeholder="Напиши, что задали на этот день…"></textarea>
+        </label>
+      </fieldset>
+      <fieldset class="day">
+        <legend>День 4</legend>
+        <div class="day-info">
+          <label for="day-4">День недели
+            <input id="day-4" name="day-4" type="text" value="Четверг">
+          </label>
+          <label for="date-4">Дата
+            <input id="date-4" name="date-4" type="date">
+          </label>
+        </div>
+        <label for="homework-4">Домашнее задание
+          <textarea id="homework-4" name="homework-4" rows="7" placeholder="Напиши, что задали на этот день…"></textarea>
+        </label>
+      </fieldset>
+      <fieldset class="day">
+        <legend>День 5</legend>
+        <div class="day-info">
+          <label for="day-5">День недели
+            <input id="day-5" name="day-5" type="text" value="Пятница">
+          </label>
+          <label for="date-5">Дата
+            <input id="date-5" name="date-5" type="date">
+          </label>
+        </div>
+        <label for="homework-5">Домашнее задание
+          <textarea id="homework-5" name="homework-5" rows="7" placeholder="Напиши, что задали на этот день…"></textarea>
+        </label>
+      </fieldset>
+      <fieldset class="day">
+        <legend>День 6</legend>
+        <div class="day-info">
+          <label for="day-6">День недели
+            <input id="day-6" name="day-6" type="text" value="Суббота">
+          </label>
+          <label for="date-6">Дата
+            <input id="date-6" name="date-6" type="date">
+          </label>
+        </div>
+        <label for="homework-6">Домашнее задание
+          <textarea id="homework-6" name="homework-6" rows="7" placeholder="Напиши, что задали на этот день…"></textarea>
+        </label>
+      </fieldset>
+    </form>
+  </main>
+</body>
+</html>
