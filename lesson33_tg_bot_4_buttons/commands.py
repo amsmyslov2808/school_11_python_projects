@@ -16,7 +16,7 @@ def process_command_start(message):
 
 
 @bot.message_handler(commands=["clear"])
-def process_command_start(message):
+def process_command_clear(message):
     chat_id = message.chat.id
     output_text = "бот получил команду clear"
 
@@ -24,7 +24,7 @@ def process_command_start(message):
 
 
 @bot.message_handler(commands=["add"])
-def process_command_start(message):
+def process_command_add(message):
     chat_id = message.chat.id
     output_text = "бот получил команду add"
 

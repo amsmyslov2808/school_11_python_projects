@@ -29,7 +29,7 @@ def process_command_start(message):
     for _ in range(4):
         answers.append(random.randint(1, 10))
 
-    right_answer_index = random.randint(0, 4)
+    right_answer_index = random.randint(0, 3)
     answers[right_answer_index] = right_answer
 
     inline_keyboard = types.InlineKeyboardMarkup()
