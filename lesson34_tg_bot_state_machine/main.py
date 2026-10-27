@@ -103,6 +103,49 @@ def process_state_input_age(message: types.Message, state: StateContext):
     )
 
 
+@bot.callback_query_handler(state=RegistrationStates.choose_gender)
+def process_state_choose_gender(call: types.CallbackQuery, state: StateContext):
+    chat_id = call.message.chat.id
+    output_text = ""
+
+    bot.answer_callback_query(call.id)
+
+    state.add_data(gender=call.data)
+
+    name = ""
+    age = 0
+    gender = ""
+
+    with state.data() as data:
+        name = data["name"]
+        age = data["age"]
+        gender = data["gender"]
+
+    output_text = (
+        f"Проверьте правильность введённых данных\n\n" + f"Имя: {name}\n"
+        f"Возраст: {age}\n"
+        f"Пол: {gender}"
+    )
+
+    inline_keyboard = types.InlineKeyboardMarkup()
+
+    inline_keyboard.add(
+        types.InlineKeyboardButton("Всё корректно", callback_data="Accept")
+    )
+    inline_keyboard.add(
+        types.InlineKeyboardButton("Есть ошибки", callback_data="Error"),
+    )
+
+    state.set(RegistrationStates.confirmation)
+
+    bot.send_message(
+        chat_id,
+        output_text,
+        message_thread_id=call.message.message_thread_id,
+        reply_markup=inline_keyboard,
+    )
+
+
 bot.add_custom_filter(custom_filters.StateFilter(bot))
 bot.setup_middleware(StateMiddleware(bot))
 
