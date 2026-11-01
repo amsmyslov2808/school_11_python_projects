@@ -7,6 +7,7 @@ import telebot
 # @bashorg_jokes_bot
 
 
+# Загружает страницу башорг.рф и возвращает текст одной случайной цитаты.
 def get_random_joke():
     # Загружаем страницу со случайными цитатами и проверяем успешность запроса.
     response = requests.get("https://башорг.рф/random", timeout=10)
@@ -27,7 +28,7 @@ def get_random_joke():
 bot = telebot.TeleBot("8911933491:AAGc-V8kEn-Lk6lZGU_CwDNKBYdSFmdmzYQ")
 
 
-# Направляем все входящие текстовые сообщения в одну функцию.
+# Обрабатывает /start и /joke, а для неизвестного текста выводит подсказку.
 @bot.message_handler(content_types=["text"], func=lambda message: True)
 def process_all_text_messages(message):
     input_text = message.text
@@ -38,6 +39,7 @@ def process_all_text_messages(message):
     if input_text == "/start":
         output_text = "Cлучайные шутки с башорг.рф. Для получения новой случайной шутки нажмите или введите /joke"
 
+    # Новую страницу запрашиваем при каждом вызове /joke.
     elif input_text == "/joke":
         output_text = get_random_joke()
 
@@ -48,6 +50,7 @@ def process_all_text_messages(message):
     bot.send_message(chat_id, output_text)
 
 
+# Запускаем получение сообщений и передаём их зарегистрированным обработчикам.
 print("Бот запущен")
 
 # Постоянно запрашиваем у Telegram новые сообщения.

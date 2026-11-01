@@ -18,7 +18,7 @@ adventure_events = [
 bot = telebot.TeleBot("8608472443:AAEgXYrAJbPzqghVwJWerWunGGhcukdcbKU")
 
 
-# Обработчик всех текстовых сообщений
+# Разбирает команды броска кубиков и отправляет результат или случайное событие.
 @bot.message_handler(content_types=["text"], func=lambda message: True)
 def process_all_text_messages(message):
     # Получаем текст сообщения и ID чата, откуда оно пришло
@@ -65,9 +65,11 @@ def process_all_text_messages(message):
         output_text = "Команда не распознана для начала работы с ботом введите /start"
 
     # Отправляем ответ в ту же тему группового чата
+    # В личном чате message_thread_id обычно не задан.
     bot.send_message(chat_id, output_text, message_thread_id=message.message_thread_id)
 
 
+# Запускаем получение сообщений и передаём их зарегистрированным обработчикам.
 print("Бот запущен")
 # Запускаем постоянное получение новых сообщений
 bot.infinity_polling()

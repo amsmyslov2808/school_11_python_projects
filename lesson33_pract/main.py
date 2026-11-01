@@ -9,11 +9,11 @@ import random
 
 bot = telebot.TeleBot("8361193272:AAH2Vp3v_pjun5AjaO9017wnX7kW_sfZNpA")
 
-# Здесь храним правильный ответ на последний созданный пример.
+# Ответ общий для всех чатов: новый /start заменяет предыдущий пример.
 right_answer = 0
 
 
-# Эта функция вызывается, когда пользователь отправляет команду /start.
+# Создаёт пример на сложение и отправляет четыре разных варианта ответа кнопками.
 @bot.message_handler(commands=["start"])
 def process_command_start(message):
     # Разрешаем функции изменять общую переменную с правильным ответом.
@@ -62,7 +62,7 @@ def process_command_start(message):
     )
 
 
-# Обрабатываем нажатия на кнопки, данные которых начинаются с "answer:".
+# Получает выбранный ответ из callback_data, проверяет его и сообщает результат.
 @bot.callback_query_handler(func=lambda call: call.data.startswith("answer:") == True)
 def process_inline_button_hide_keyboard(call):
     # Сообщаем Telegram, что нажатие обработано, чтобы убрать значок ожидания.

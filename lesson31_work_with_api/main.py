@@ -2,6 +2,7 @@ import requests
 
 from datetime import datetime
 
+# API возвращает числовой код погоды; здесь задаём его описание.
 WEATHER_CODE_RU = {
     0: "Ясно",
     1: "Преимущественно ясно",
@@ -35,7 +36,9 @@ WEATHER_CODE_RU = {
 }
 
 
+# Получает текущую температуру, код погоды и время для указанных координат.
 def get_weather(latitude, longitude):
+    # Запрашиваем текущую температуру и код погоды для заданных координат.
     params = {
         "latitude": latitude,
         "longitude": longitude,
@@ -49,9 +52,11 @@ def get_weather(latitude, longitude):
     response.raise_for_status()
 
     data = response.json()
+    # Из всего ответа оставляем только текущие погодные данные.
     return data["current"]
 
 
+# Координаты определяют место, для которого запрашивается погода.
 city = "Брянск"
 latitude = 53.27096
 longitude = 34.32143
@@ -59,11 +64,13 @@ longitude = 34.32143
 city_weather = get_weather(latitude, longitude)
 
 
+# Разбираем дату и время из API, а для вывода оставляем только дату.
 normalize_datetime = datetime.strptime(city_weather["time"], "%Y-%m-%dT%H:%M").strftime(
     "%d.%m.%Y"
 )
 temperature = city_weather["temperature_2m"]
 
+# Заменяем числовой код из ответа API русским описанием погоды.
 weather_condition = WEATHER_CODE_RU[int(city_weather["weather_code"])]
 
 print("Погода в городе:", city)

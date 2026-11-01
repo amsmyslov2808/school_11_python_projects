@@ -2,6 +2,7 @@ from dataclasses import dataclass
 import requests
 
 
+# Храним только те поля персонажа, которые нужны для вывода.
 @dataclass
 class Character:
     name: str
@@ -12,6 +13,7 @@ class Character:
     image: str
 
 
+# Словари переводят значения API на русский язык.
 STATUS_RU = {
     "Alive": "Живой",
     "Dead": "Мёртвый",
@@ -39,6 +41,7 @@ GENDER_RU = {
 }
 
 
+# Запрашивает персонажа по ID и возвращает его данные в объекте Character.
 def get_character_info_by_id(character_id: int) -> Character:
 
     url = f"https://rickandmortyapi.com/api/character/{character_id}"
@@ -47,8 +50,10 @@ def get_character_info_by_id(character_id: int) -> Character:
 
     response.raise_for_status()
 
+    # Превращаем JSON-ответ в словарь Python.
     data = response.json()
 
+    # Родной мир находится во вложенном объекте origin.
     return Character(
         name=data["name"],
         status=data["status"],
@@ -59,7 +64,9 @@ def get_character_info_by_id(character_id: int) -> Character:
     )
 
 
+# Формирует описание персонажа, переводя статус, вид и пол на русский язык.
 def character_to_pritty_str(character: Character) -> str:
+    # Если перевода нет, оставляем исходное значение из API.
     status_ru = STATUS_RU.get(character.status, character.status)
     species_ru = SPECIES_RU.get(character.species, character.species)
     gender_ru = GENDER_RU.get(character.gender, character.gender)
@@ -74,6 +81,7 @@ def character_to_pritty_str(character: Character) -> str:
     )
 
 
+# После каждого вывода снова запрашиваем ID следующего персонажа.
 while True:
     character_id = int(input("введите ИД персонажа мульта Рик и Морти от 1 до 826: "))
 
