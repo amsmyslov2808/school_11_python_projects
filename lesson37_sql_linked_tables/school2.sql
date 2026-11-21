@@ -20,3 +20,20 @@ CREATE TABLE "subjects" (
 SELECT * FROM subjects AS s
 JOIN teachers AS t
 ON s.teacher_id = t.id
+
+
+SELECT * FROM subjects WHERE hours_per_week = (SELECT DISTINCT(hours_per_week) FROM subjects ORDER BY hours_per_week DESC  LIMIT 1 OFFSET 1)
+
+SELECT * FROM subjects WHERE hours_per_week IN (SELECT DISTINCT(hours_per_week) FROM subjects ORDER BY hours_per_week DESC LIMIT 3) AND is_mandatory=1
+
+SELECT 
+s.id, 
+s.name AS subject_name, 
+t.full_name AS teacher_name, 
+t.experience AS teacher_experience, 
+s.hours_per_week, 
+s.is_mandatory 
+FROM subjects AS s
+JOIN teachers AS t ON s.teacher_id=t.id
+WHERE s.hours_per_week<=3 AND s.is_mandatory=0 AND t.experience<=10
+ORDER BY t.experience ASC
