@@ -35,9 +35,39 @@ def insert_new_tour(tour: Tour):
         )
 
 
-insert_new_tour(
-    Tour(id=0, title="Орловский заповедник", country="Россия", days=3, price=5700)
-)
+def update_tour_by_id(tour: Tour, id: int):
+    with get_connection() as connection:
+        connection.execute(
+            """
+            UPDATE tours SET
+            title = ?, 
+            country = ?,
+            days = ?,
+            price = ?
+            WHERE id=?
+            """,
+            (tour.title, tour.country, tour.days, tour.price, id),
+        )
+
+
+def delete_tour_by_id(id: int):
+    with get_connection() as connection:
+        connection.execute(
+            """
+            DELETE FROM tours
+            WHERE id=?
+            """,
+            (id,),
+        )
+
+
+delete_tour_by_id(1)
+
+# update_tour_by_id(Tour(0, "Солнечный", "Россия", 21, 35000), 1)
+
+# insert_new_tour(
+#     Tour(id=0, title="Орловский заповедник", country="Россия", days=3, price=5700)
+# )
 
 tours = get_all_tours()
 
